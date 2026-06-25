@@ -1,11 +1,17 @@
 <!--
-  SERVICE SPEC TEMPLATE
-  =====================
+  BACKEND SERVICE SPEC TEMPLATE
+  =============================
   Copy this file to `##-{service}.md` at the workspace root and fill it in.
   The numeric prefix sets reading order in the Spec Document Index.
 
+  Use THIS template for a backend service (API, BFF, worker, gateway —
+  anything with endpoints, a data model, and server-side auth).
+  Use FRONTEND-SPEC-TEMPLATE.md for a client app (storefront, dashboard):
+  frontends are documented by their state, views, and API consumption, not
+  by endpoints they expose.
+
   This is the fill-in skeleton. For the rules on WHAT each section must
-  contain, read SPEC-GUIDELINES.md (§2 "Service Spec Files") — that is the
+  contain, read SPEC-GUIDELINES.md §2 ("Service Specs") — that is the
   canonical checklist; this template is just the scaffold to populate.
 
   How to generate one with an agent:
@@ -176,13 +182,10 @@ Quick-reference table of every endpoint.
 - **Logging:** {what is logged, where}.
 
 <!--
-  FRONTEND SPECS ONLY — replace this section with the frontend additions
-  from SPEC-GUIDELINES.md §6:
-    - Base Request Layer (apiService.makeRequest semantics, tenantUrl resolution)
-    - Redux Store Structure (key slice names)
-    - Enumerations & Constants
-    - Views & Pages
-    - Frontend Patterns & Implementation Conventions (create/edit view pattern, etc.)
+  Documenting a FRONTEND? Stop here — this template is backend-shaped.
+  Use FRONTEND-SPEC-TEMPLATE.md instead, which scaffolds the frontend
+  sections (Base Request Layer, State/Redux Store, API Services, Snapshot
+  Consumption, Routes/Views, Frontend Patterns).
 -->
 
 ---

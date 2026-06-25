@@ -41,7 +41,8 @@ them.
 ├── SPEC-GUIDELINES.md              ← the canonical "what goes in a spec" checklist
 ├── WORKFLOW.md                     ← the feature lifecycle (the 5 steps)
 ├── templates/
-│   ├── SERVICE-SPEC-TEMPLATE.md    ← fill-in skeleton for a new service spec
+│   ├── SERVICE-SPEC-TEMPLATE.md    ← fill-in skeleton for a backend service spec
+│   ├── FRONTEND-SPEC-TEMPLATE.md   ← fill-in skeleton for a frontend/client-app spec
 │   └── FEATURE-TEMPLATE.md         ← fill-in skeleton for a new feature file
 ├── Features/
 │   ├── FEATURE-gift-cards.md       ← a worked, cross-service design scratchpad
