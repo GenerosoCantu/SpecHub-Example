@@ -37,7 +37,13 @@ names here — those belong in the service specs.
 ## 2. Service Specs (`01-…` … `05-…`)
 
 Each reads like a stable design doc for its service — the *implemented* state,
-not a draft. **Common structure:**
+not a draft. Two scaffolds back this section: copy
+`templates/SERVICE-SPEC-TEMPLATE.md` for a **backend** service (endpoints, data
+model, server-side auth) and `templates/FRONTEND-SPEC-TEMPLATE.md` for a
+**frontend / client app** (state, views, API consumption). The common structure
+below applies to both; frontends swap the endpoint-shaped sections for the
+frontend-shaped ones noted under *Service-specific expectations*. **Common
+structure:**
 
 1. **Header** — title, one-line description, service identifier, `Last updated`.
 2. **Table of Contents.**
