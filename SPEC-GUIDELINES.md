@@ -12,7 +12,9 @@ this when writing or updating any Plaza spec. The fill-in scaffolds live in
 The single source of truth for the whole platform: a high-level description plus
 a navigation/status hub. **Required sections:**
 
-1. **Version & Last Updated** — version field + dated note on the latest change.
+1. **Version & Last Updated** — version field + a **single** `Last Updated:`
+   line, nothing more. Dated history belongs only in `CHANGELOG.md`
+   (single-log rule, `WORKFLOW.md` Step 5).
 2. **Table of Contents** — numbered, covering all major sections.
 3. **Product Summary** — one paragraph: what the platform is and who it serves.
 4. **System Components** — deployable units grouped as client apps / backend
@@ -22,15 +24,23 @@ a navigation/status hub. **Required sections:**
 7. **Authentication & Authorization** — token flow, claims, delegated validation.
 8. **Service Communication** — who calls whom; public vs authenticated.
 9. **Hosting & Deployment** — where each unit runs.
-10. **Shared Conventions** — system-wide rules (API naming, entities, storage
-    model, env-var prefixes, logging, code organization, IDs).
+10. **Shared Conventions** — a pointer to `CONVENTIONS.md`, which holds the
+    system-wide rules (API naming, entities, storage model, env-var prefixes,
+    logging, code organization, IDs). Extracted so an agent checking a naming
+    rule doesn't load the whole overview.
 11. **Spec Document Index** — one line per service spec.
 12. **Known Gaps & Technical Debt** — honest limitations.
 13. **Open Questions Log** — open decisions, with a blocking flag.
-14. **Pending Features** — status table, one row per in-flight feature.
+14. **Feature Status** — a pointer to `STATUS.md`, the live status board
+    (extracted for the same reason as conventions).
 
 **Keep it high-level.** No full endpoint reference, DTO schemas, or Redux slice
 names here — those belong in the service specs.
+
+**Every distinct kind of question gets the smallest file that can answer it.**
+`CONVENTIONS.md` and `STATUS.md` started life as overview sections and were
+extracted the day an agent had to load the full architecture document just to
+check a naming rule or a feature's status.
 
 ---
 
@@ -79,6 +89,38 @@ structure:**
 - Describe the implemented state; use exact identifiers; prefer tables and
   request/response examples over prose; put anything unresolved in *Known Issues*
   or the overview's *Open Questions*, never inline as if real.
+- **Cascaded-but-not-built sections carry a `<!-- PENDING: FEATURE-{name} -->`
+  marker** (added in step 2, removed in step 5 once the work is verified), so
+  any reader — human or agent — knows the section is designed but not yet real.
+- Each spec's header carries a **single** `Last updated` line describing current
+  state; never a running history block (single-log rule — history goes in
+  `CHANGELOG.md`).
+
+### When a spec outgrows the window: split specs
+
+Spec-as-compression buys a long runway, not an infinite one. When a service
+spec grows past the point where "read the spec" means dragging thousands of
+lines into context to answer a question about one module, apply the same
+compression one level down — **the spec file becomes an index over per-module
+files:**
+
+```text
+03-main-api.md            ← index: ~50 lines, a table of modules
+03-main-api/
+├── 00-core.md            ← stack, auth, cross-cutting behavior
+├── gift-cards.md         ← one file per module
+├── products.md
+└── …
+```
+
+The routing rule does the real work: for any module task, the agent reads the
+**index**, the directory's **core file**, and **only the module file(s) the
+task touches** — never the whole directory. A new module gets its own file plus
+one row in the index table; module content never migrates back into the index.
+Context load per task then stays roughly constant as the system grows.
+
+Plaza's five specs all still fit comfortably in single files, so none are split
+here — split only when you feel the friction, not in advance.
 
 ---
 
@@ -88,9 +130,11 @@ The overview describes structure, relationships, and system-wide patterns and
 links out to specs; it never duplicates service-level endpoint detail. When in
 doubt, detailed contracts go in the service spec.
 
-**When to update which:** designing a feature → add a Pending row in the overview
-and cascade into the affected specs (step 2). Shipping it → reconcile the specs,
-flip the overview row to complete, update the changelog, archive (step 5).
+**When to update which:** designing a feature → add a Pending row in `STATUS.md`
+and cascade into the affected specs with `PENDING` markers (step 2). Shipping it
+→ verify the specs against the code and reconcile, remove the markers, flip the
+`STATUS.md` row, add a dated `CHANGELOG.md` entry with commit refs, archive
+(step 5).
 
 ---
 

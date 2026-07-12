@@ -5,7 +5,7 @@
 > calls the live API for cart and checkout.
 
 **Service identifier:** `storefront-frontend`
-**Last updated:** 2026-06-24 — added gift-card redemption field at checkout.
+**Last updated:** 2026-07-11 — gift-card redemption at checkout cascaded; marked `PENDING` until implemented.
 
 ---
 
@@ -65,6 +65,7 @@ domain → resolve store → fetch stores/{storeId}/snapshot.json (static)
 | List products   | (from snapshot)                |
 | Checkout        | `POST main-api /public/checkout` |
 
+<!-- PENDING: FEATURE-gift-cards -->
 ### Gift-card redemption (added by gift-cards feature)
 
 - The checkout form exposes an optional **gift card code** field.

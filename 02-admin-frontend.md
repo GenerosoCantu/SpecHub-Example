@@ -4,7 +4,7 @@
 > orders, configuration, and gift cards via the authenticated `main-api`.
 
 **Service identifier:** `admin-frontend`
-**Last updated:** 2026-06-24 — added Gift Cards management view.
+**Last updated:** 2026-07-11 — Gift Cards management view cascaded; marked `PENDING` until implemented.
 
 ---
 
@@ -59,6 +59,7 @@
 | `ordersApi`           | `/orders` read                         |
 | `giftCardsApi`        | `/gift-cards`, `/gift-cards/:id/deactivate` |
 
+<!-- PENDING: FEATURE-gift-cards (giftCards slice above, API service + /gift-cards view below) -->
 ### Gift Cards API (added by gift-cards feature)
 
 | Method | Call                              | Endpoint                          |

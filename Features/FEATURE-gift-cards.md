@@ -54,11 +54,26 @@
 
 ## 4. Open questions (logged in overview)
 
-- Should the storefront expose a "check balance" endpoint before checkout? (#1)
-- Per-store currency, or single-currency v1? Assume single-currency for now. (#2)
+None blocking. Two non-blocking questions are parked in the overview's Open
+Questions log — prompt generation refuses to run while a *blocking* decision
+remains open:
+
+- Should the storefront expose a "check balance" endpoint before checkout? (#1 — deferred, not v1)
+- Per-store currency, or single-currency v1? Decided: single-currency v1. (#2)
 
 ## 5. Out of scope (v1)
 
 - Partial refunds back onto a gift card.
 - Emailing the card code to a recipient.
 - CSV export of gift cards.
+
+## 6. Implementation order
+
+main-api → admin-frontend + storefront-frontend (the two frontends are
+independent of each other; both require the main-api prompt to be Verified).
+
+## 7. Recommended model (per service)
+
+- **main-api:** Haiku — backend-only CRUD against an existing module pattern; the one subtle piece (atomic redemption) is fully specified in the prompt.
+- **admin-frontend:** Sonnet — standard list/modal view, but it spans a new slice + API service + view wiring.
+- **storefront-frontend:** Haiku — one optional form field and a discount line, contracts fully specified.

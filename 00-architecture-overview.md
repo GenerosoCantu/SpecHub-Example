@@ -1,12 +1,15 @@
 # Plaza — Architecture Overview
 
-**Version:** 1.0
-**Last Updated:** 2026-06-24 — gift-cards feature cascaded into specs; prompts generated for `main-api`, `admin-frontend`, `storefront-frontend`.
+**Version:** 1.1
+**Last Updated:** 2026-07-11
 
-> This is the single source of truth for the Plaza platform. It documents the
-> system at a high level and acts as the navigation + status hub for every
-> service spec and all in-flight work. It is the first file an agent reads for
-> any system-wide question.
+> This documents the Plaza system at a high level and is the first file an
+> agent reads for any **system-wide** question. Narrower questions have
+> smaller files: shared conventions live in `CONVENTIONS.md`, feature status
+> in `STATUS.md`, implementation history in `CHANGELOG.md` — an agent should
+> load those instead of this overview when that is all it needs. The header
+> above carries a version and a single date, nothing more; dated history
+> belongs only in `CHANGELOG.md` (single-log rule, `WORKFLOW.md` Step 5).
 
 ## Table of Contents
 
@@ -21,7 +24,7 @@
 9. [Spec Document Index](#9-spec-document-index)
 10. [Known Gaps and Technical Debt](#10-known-gaps-and-technical-debt)
 11. [Open Questions Log](#11-open-questions-log)
-12. [Pending Features](#12-pending-features)
+12. [Feature Status](#12-feature-status)
 
 ---
 
@@ -146,18 +149,11 @@ stores cheaply, with published content delivered as static JSON.
 
 ## 8. Shared Conventions
 
-These apply to **all** services and are what stop convention drift — every
-generated prompt inherits them.
-
-- **API naming:** REST, plural nouns, kebab paths (`/gift-cards`), JSON bodies.
-- **Domain entities:** `Store`, `Product`, `Order`, `GiftCard`, `User`.
-- **Snapshot model:** published JSON lives at `stores/{storeId}/snapshot.json`;
-  images at `stores/{storeId}/assets/...`.
-- **Env vars:** prefixed per service (`MAIN_API_*`, `TENANT_*`, `ASSET_*`).
-- **Logging:** structured JSON logs; request id propagated via `x-request-id`.
-- **Code organization:** one folder per feature module in backend services;
-  feature-based slices in the admin frontend.
-- **IDs:** Mongo `ObjectId`; human-facing slugs where specs require them.
+**Moved to [`CONVENTIONS.md`](CONVENTIONS.md).** The cross-service conventions
+(API naming, domain entities, snapshot/storage model, env vars, logging, code
+organization, IDs) were extracted into their own file so an agent checking a
+naming rule doesn't have to load this whole overview. Every generated prompt
+inherits them from there.
 
 ---
 
@@ -190,10 +186,9 @@ generated prompt inherits them.
 
 ---
 
-## 12. Pending Features
+## 12. Feature Status
 
-Live status board. One row per in-flight feature; flipped to ✅ in step 5.
-
-| Feature    | storefront-frontend | admin-frontend | main-api | tenant-service | asset-service | Status      |
-| ---------- | ------------------- | -------------- | -------- | -------------- | ------------- | ----------- |
-| Gift cards | ⏳ pending           | ⏳ pending      | ⏳ pending | n/a            | n/a           | In progress |
+**Moved to [`STATUS.md`](STATUS.md).** The live feature status board — one row
+per feature, flipped to ✅ in step 5 — was extracted into its own file so an
+agent checking a feature's state doesn't have to load this whole overview.
+Implementation history lives in `CHANGELOG.md`.

@@ -1,11 +1,20 @@
 # PROMPT — main-api — Gift Cards
 
-> Self-contained implementation prompt for the **`main-api`** repository.
-> Generated from `03-main-api.md` and `Features/FEATURE-gift-cards.md`.
-> AI-generated, human-reviewed, disposable — archived to `Prompts/Implemented/`
-> after the work lands. Run it in a fresh agent session inside the `main-api`
-> repo. It is deliberately a tight slice — it does not ask you to read the whole
-> repo, only the one pattern reference named below.
+> **Target repo:** plaza-main-api
+> **Branch:** feature/gift-cards
+> **Prerequisites:** none
+> **Status:** Generated   <!-- Generated → Applied → Verified -->
+> **Recommended model:** Haiku — backend-only CRUD against an existing module pattern; the atomic redemption rule is fully specified below
+
+<!--
+  Self-contained implementation prompt, generated from 03-main-api.md and
+  Features/FEATURE-gift-cards.md (Step 3). Run it in a fresh agent session
+  inside the target repo, on the recommended model tier. The dispatch header
+  makes Prompts/ a board: flip Status to Applied after applying, Verified after
+  human verification; archived to Prompts/Implemented/ in Step 5. It is
+  deliberately a tight slice — it does not ask you to read the whole repo, only
+  the one pattern reference named below.
+-->
 
 ---
 

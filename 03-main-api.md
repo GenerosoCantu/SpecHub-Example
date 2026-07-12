@@ -5,7 +5,7 @@
 > service.
 
 **Service identifier:** `main-api`
-**Last updated:** 2026-06-24 — added Gift Cards module (schema, endpoints, checkout redemption).
+**Last updated:** 2026-07-11 — Gift Cards module cascaded (schema, endpoints, checkout redemption); sections marked `PENDING` until implemented.
 
 ---
 
@@ -114,6 +114,7 @@ main-api/
 | `totalCents`   | number   | yes      | —           | `subtotal - discount`        |
 | `status`       | string   | yes      | `pending`   | `pending`/`paid`/`cancelled` |
 
+<!-- PENDING: FEATURE-gift-cards -->
 ### GiftCard (collection `gift_cards`)
 
 | Field          | Type     | Required | Default   | Notes / Index                       |
@@ -144,6 +145,7 @@ main-api/
 - **Response:** `Order` with computed `discountCents` and `totalCents`.
 - **Side effects:** if `giftCardCode` is present and valid, decrements the gift
   card balance atomically (see redemption rule below).
+  <!-- PENDING: FEATURE-gift-cards (giftCardCode + redemption side effect) -->
 
 ### Protected Endpoints (JWT required — admin)
 
@@ -153,6 +155,7 @@ main-api/
 - **Request DTO:** `CreateProductDto` — `{ title, slug, priceCents, active }`
 - **Response:** `Product`. Triggers a snapshot publish.
 
+<!-- PENDING: FEATURE-gift-cards (all three /gift-cards endpoints below) -->
 #### `GET /gift-cards` — list a store's gift cards
 
 - **Guard:** `JwtAuthGuard`

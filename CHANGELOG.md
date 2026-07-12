@@ -1,0 +1,7 @@
+# Plaza Platform — Implementation Changelog
+
+> The **only** document in this hub that accumulates dated history (see the single-log rule in `WORKFLOW.md` Step 5). Every other file describes current state only. Entries are newest-first, one per feature pass (design/cascade passes and close-out passes each get one), and close-out entries end with the implementing commit SHA(s) or PR link(s) per service repo — e.g. `(main-api@a1b2c3d, admin-frontend#124)` — so any spec claim can be traced back to the code that made it true.
+
+---
+
+*(2026-06-24 — Gift Cards designed and cascaded (#1, pending implementation): gift cards become a `main-api` domain entity (`gift_cards`, per-store-unique 12-char codes, atomic `findOneAndUpdate` redemption capped at `min(balance, subtotal)`, balances never snapshotted); admin-frontend gains a `giftCards` slice + `/gift-cards` view (issue by amount, per-row deactivate); storefront-frontend gains an optional gift-card code field at checkout with server-side-only validation. Cascaded into `03-main-api.md`, `02-admin-frontend.md`, and `01-storefront-frontend.md` with `PENDING` markers; status row added to `STATUS.md`. Design doc at `Features/FEATURE-gift-cards.md`; implementation prompts at `Prompts/PROMPT-main-api-gift-cards.md` (Haiku), `Prompts/PROMPT-admin-frontend-gift-cards.md` (Sonnet, declares the main-api prompt as prerequisite), and `Prompts/PROMPT-storefront-frontend-gift-cards.md` (Haiku, declares the main-api prompt as prerequisite). Implement order: main-api before both frontends.)*
